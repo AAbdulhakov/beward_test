@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QPainter>
+#include <QTimer>
 
 class led_widget : public QWidget
 {
@@ -18,11 +19,23 @@ protected:
 
 signals:
 
+
+
+
 public slots:
 
 
+private slots:
+    void flicker();
 
+private:
+    QColor color_1;
+    QColor color_2;
+    QColor color_3;
 
+    QTimer* timer_;
+
+    bool blink;
 
 };
 
