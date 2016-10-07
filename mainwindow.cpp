@@ -19,24 +19,59 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->horizontalSlider_rate,SIGNAL(valueChanged(int)),ui->led,SLOT(setLEDFrameRate(int)));
     connect(ui->checkBox_onoff,SIGNAL(clicked(bool)),ui->led,SLOT(setLEDState(bool)));
 
+    fifo_reader *fifo_read = new fifo_reader();
+
+
+    QThread *tread1 = new QThread;
+
+    fifo_read->moveToThread(tread1);
+
+    connect(fifo_read,SIGNAL(fifodata(QString)),this,SLOT(Message(QString)));
+    connect(this,SIGNAL(read_fifo()),fifo_read,SLOT(read_fifo()));
+
+    tread1->start();
+
+    emit read_fifo();
+
+
+
 
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    //delete tread1;
+
 }
+
+
+void MainWindow::Message(QString m)
+{
+    ui->textEdit->append(m);
+
+    emit  read_fifo(); //закольцуем
+
+
+
+
+}
+
+
+
+
+
 
 
 void MainWindow::setColor(int col)
 {
-   //qDebug()<<col;
+    //qDebug()<<col;
 
-   ui->led->setLEDColor((LEDColor)col);
+    ui->led->setLEDColor((LEDColor)col);
 
+}
 
-
-
-
-
+void MainWindow::on_pushButton_clicked()
+{
+    emit  read_fifo();
 }

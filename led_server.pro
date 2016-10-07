@@ -14,9 +14,11 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    led_widget.cpp
+    led_widget.cpp \
+    fifo_reader.cpp
 
 HEADERS  += mainwindow.h \
-    led_widget.h
+    led_widget.h \
+    fifo_reader.h
 
 FORMS    += mainwindow.ui
