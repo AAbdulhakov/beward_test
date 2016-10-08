@@ -14,7 +14,8 @@
 
 
 
-#define FIFO       "/tmp/fifo0001.1"
+//#define FIFO       "/tmp/fifo0001.1"
+#define FIFO       "/tmp/fifo1"
 
 class fifo_reader : public QObject
 {

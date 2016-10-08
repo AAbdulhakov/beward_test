@@ -22,3 +22,6 @@ HEADERS  += mainwindow.h \
     fifo_reader.h
 
 FORMS    += mainwindow.ui
+
+DISTFILES += \
+    pipe_client.sh
