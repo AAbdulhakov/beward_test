@@ -6,3 +6,5 @@ echo "Адрес электронной почты: $EMAIL"
 
 
 echo "blabla" >> /tmp/fifo1
+
+

@@ -17,6 +17,15 @@ public:
     explicit led_widget(QWidget *parent = 0);
     ~led_widget();
 
+    QString get_led_state(); //состояние светодиода
+    QString get_led_color(); //цвет светодиода
+    QString get_led_rate(); //частота мерцания
+
+
+
+
+
+
 protected:
     void paintEvent(QPaintEvent* event);
 
@@ -60,6 +69,8 @@ private:
 
 
     bool status_on_of;
+    LEDColor currentcolor;
+    int currentrate;
 
 };
 

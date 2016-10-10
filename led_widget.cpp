@@ -14,8 +14,8 @@ led_widget::led_widget(QWidget *parent) : QWidget(parent)
     status_on_of = true;
 
 
-
-
+    currentcolor = red;
+    currentrate = 0;
 
 
 
@@ -34,6 +34,42 @@ led_widget::led_widget(QWidget *parent) : QWidget(parent)
 
 led_widget::~led_widget()
 {}
+
+
+QString led_widget::get_led_state() //состояние светодиода
+{
+    if(status_on_of == true)
+    {
+        return "OK on";
+    }
+    else
+    {
+        return "OK off" ;
+    }
+}
+
+QString led_widget::get_led_color() //свет светодиода
+{
+    if(currentcolor == red)
+    {
+        return "OK red";
+    }
+    if(currentcolor == green)
+    {
+        return "OK green";
+    }
+    if(currentcolor == blue)
+    {
+        return "OK blue";
+    }
+}
+
+QString led_widget::get_led_rate() //частота мерцания
+{
+    return "OK "+QString::number(currentrate);
+}
+
+
 
 void led_widget::setLEDState(bool on) //включение выключние светодиода
 {
@@ -54,18 +90,21 @@ void led_widget::setLEDColor(LEDColor col)
         current_color_1 = QColor(245, 0, 0);
         current_color_2 = QColor(210, 0, 0);
         current_color_3 = QColor(140, 0, 0);
+        currentcolor = red;
         setprivatColor(current_color_1,current_color_2,current_color_3);
         break;
     case green:
         current_color_1 = QColor(0, 245, 0);
         current_color_2 = QColor(0, 210, 0);
         current_color_3 = QColor(0, 140, 0);
+        currentcolor = green;
         setprivatColor(current_color_1,current_color_2,current_color_3);
         break;
     case blue:
         current_color_1 = QColor(0, 0, 245);
         current_color_2 = QColor(0, 0, 210);
         current_color_3 = QColor(0, 0, 140);
+        currentcolor = blue;
         setprivatColor(current_color_1,current_color_2,current_color_3);
         break;
 
@@ -81,6 +120,9 @@ void led_widget::setLEDColor(LEDColor col)
 }
 void led_widget::setLEDFrameRate(int rate)
 {
+    currentrate = rate;
+
+
     if(rate == 0 )
     {
         timer_->stop();

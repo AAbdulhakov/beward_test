@@ -10,9 +10,25 @@ fifo_reader::fifo_reader(QObject *parent) : QObject(parent)
 
     {
         qDebug()<<"Ошибка mkfifo";
-        //return;
+
+        QString mes = QString("Не удалось создать именованый канал: ")+QString(FIFO)+"проверьте настройки доступа. Дальнейшая работа невозможна";
+
+        QMessageBox::critical(0,"Критическая ошибка",mes);
+
+        //QCoreApplication::quit();
 
     }
+
+//    unlink(FIFOw);
+
+//    if((mkfifo(FIFOw, O_RDWR)) == -1)
+
+//    {
+//        qDebug()<<"Ошибка mkfifo FIFOw";
+//        //return;
+
+//    }
+
 
 
 }
@@ -20,7 +36,7 @@ fifo_reader::fifo_reader(QObject *parent) : QObject(parent)
 
 void fifo_reader::read_fifo() // тут читаем
 {
-   // qDebug()<<"read_fifo run";
+    // qDebug()<<"read_fifo run";
 
 
     FILE *fp;
@@ -66,3 +82,41 @@ void fifo_reader::read_fifo() // тут читаем
     //emit fifodata("gfookj");
 
 }
+
+void fifo_reader::write_fifo(QString mes) //тут пишем
+{
+//    FILE *fp;
+
+//    qDebug()<<"start";
+
+//    if ((fp = fopen(FIFOw, "w")) == NULL)
+//    {
+//        qDebug()<<"fopen error";
+//        return;
+//    }
+//    fputs(mes.toLatin1().data(), fp);
+//    fclose(fp);
+
+//    qDebug()<<"done";
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
